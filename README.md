@@ -34,6 +34,8 @@ PDF → Chunk → Embed → Vector DB → Query → Retrieve → LLM → Answer
 pip install langchain langchain-openai langchain-community langchain-text-splitters chromadb pypdf openai python-dotenv
 ```
 
+The CLI reads a PDF from a local path. Building the index sends its text chunks to OpenAI for embeddings. Each question and up to three retrieved chunks are then sent to the chat model. Use a document you can share with the API.
+
 Create a `.env` file:
 
 ```

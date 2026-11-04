@@ -49,9 +49,12 @@ Question: {question}
     print("\nReady! Ask anything about the paper. (type 'quit' to exit)\n")
 
     while True:
-        query = input("Question: ")
+        query = input("Question: ").strip()
         if query.lower() == "quit":
             break
+        if not query:
+            print("Please enter a question.")
+            continue
         answer = chain.invoke(query)
         print(f"\nAnswer: {answer.content}\n")
 

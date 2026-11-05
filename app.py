@@ -25,6 +25,9 @@ def main():
     print("Loading paper...")
     chunks = load_paper(pdf_path)
     print(f"Split into {len(chunks)} chunks")
+    if not chunks:
+        print("No text was extracted from this PDF. Try a PDF with selectable text.")
+        return
 
     print("Building vector store...")
     embeddings = OpenAIEmbeddings()

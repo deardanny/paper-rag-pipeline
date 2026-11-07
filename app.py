@@ -20,7 +20,10 @@ def load_paper(pdf_path):
     return splitter.split_documents(documents)
 
 def main():
-    pdf_path = input("Enter PDF path (e.g. paper.pdf): ")
+    pdf_path = os.path.expanduser(input("Enter PDF path (e.g. paper.pdf): ").strip())
+    if not os.path.isfile(pdf_path):
+        print("PDF file not found. Enter the path to an existing local PDF file.")
+        return
 
     print("Loading paper...")
     chunks = load_paper(pdf_path)

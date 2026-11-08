@@ -1,10 +1,12 @@
 # Research Paper Q&A System (RAG Pipeline)
 
-An end-to-end **Retrieval-Augmented Generation (RAG)** pipeline that enables semantic search and Q&A over academic PDF documents — ask any question about a paper and get context-aware, document-grounded answers.
+A command-line **Retrieval-Augmented Generation (RAG)** prototype for asking questions about a local research PDF. It retrieves relevant text chunks and passes them to GPT-4o-mini alongside the question.
+
+[Case study and demonstration](https://hdjang.com/projects/rag/) · [Application code](app.py)
 
 ## Overview
 
-LLMs hallucinate when answering questions outside their training data. This project grounds every answer in the actual content of uploaded research papers using a RAG architecture.
+Retrieval gives the model document context instead of relying only on its training data. The prompt asks the model to answer from that context, but retrieval and prompting do not guarantee factual correctness.
 
 ## How It Works
 
@@ -60,12 +62,19 @@ Question: What is the main contribution of this paper?
 Answer: ...
 ```
 
-## Example
+## Example question
 
-Tested on *How to Read a Paper* (Keshav, 2016):
+An illustrative question for a paper describing a three-pass reading approach:
 
 > **Q:** What is the three-pass approach?  
 > **A:** The three-pass approach is a method for reading research papers in up to three passes, each with a specific goal...
+
+## Current scope
+
+- One local PDF per run; the vector store is created at startup and no persistence directory is configured.
+- Text-based PDFs are supported. There is no OCR pipeline for scanned pages.
+- The CLI prints the model's answer, without a separate retrieved-passage or page-citation display.
+- No benchmark dataset or accuracy evaluation is bundled. Check important answers against the source PDF.
 
 ## Author
 

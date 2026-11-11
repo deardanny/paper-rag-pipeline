@@ -19,8 +19,19 @@ def load_paper(pdf_path):
     )
     return splitter.split_documents(documents)
 
+def read_cli_input(prompt):
+    """Return None when the user closes or cancels an input prompt."""
+    try:
+        return input(prompt).strip()
+    except (EOFError, KeyboardInterrupt):
+        print("\nGoodbye.")
+        return None
+
 def main():
-    pdf_path = os.path.expanduser(input("Enter PDF path (e.g. paper.pdf): ").strip())
+    pdf_path = read_cli_input("Enter PDF path (e.g. paper.pdf): ")
+    if pdf_path is None:
+        return
+    pdf_path = os.path.expanduser(pdf_path)
     if not os.path.isfile(pdf_path):
         print("PDF file not found. Enter the path to an existing local PDF file.")
         return
@@ -55,8 +66,8 @@ Question: {question}
     print("\nReady! Ask anything about the paper. (type 'quit' to exit)\n")
 
     while True:
-        query = input("Question: ").strip()
-        if query.lower() == "quit":
+        query = read_cli_input("Question: ")
+        if query is None or query.lower() == "quit":
             break
         if not query:
             print("Please enter a question.")

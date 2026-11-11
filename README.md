@@ -50,6 +50,8 @@ OPENAI_API_KEY=your_key_here
 python app.py
 ```
 
+Type `quit` at the question prompt to exit. Closing input (EOF, usually Ctrl+D) or pressing Ctrl+C at either prompt also exits cleanly.
+
 ```
 Enter PDF path (e.g. paper.pdf): your_paper.pdf
 Loading paper...

@@ -64,6 +64,16 @@ Question: What is the main contribution of this paper?
 Answer: ...
 ```
 
+## Tests
+
+From the repository root, run the offline CLI input tests:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+These tests use Python's standard library and stub PDF loading and API clients. They check input handling without making API requests; they do not evaluate retrieval or answer quality.
+
 ## Example question
 
 An illustrative question for a paper describing a three-pass reading approach:
